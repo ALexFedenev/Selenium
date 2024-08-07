@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -56,6 +57,8 @@ public class CreateTrip {
         wait.until(visibilityOf(driver.findElement(By.xpath("//h1[@class='user-name']"))));
         //заполняем командировку
         driver.findElement(By.xpath("//select[@name='crm_business_trip[businessUnit]']")).sendKeys(division);
+        String divisionActualNumber=driver.findElement(By.xpath("//select[@name='crm_business_trip[businessUnit]']")).getAttribute("value");
+        String divisionActualText=driver.findElement(By.xpath(String.format("//option[@value='%s' and text()='%s']",divisionActualNumber,division))).getText();
         driver.findElement(By.xpath("//a[@id='company-selector-show']")).click();
         driver.findElement(By.xpath("//span[@class='select2-chosen']")).click();
         wait.until(visibilityOf(driver.findElement(By.xpath(String.format("//div[text()='%s']", hostOrganization))))).click();
@@ -67,12 +70,18 @@ public class CreateTrip {
         String citiActual = driver.findElement(By.xpath("//input[@data-name='field__arrival-city']")).getAttribute("value");
         driver.findElement(By.xpath("//input[@placeholder='Укажите дату' and contains(@id,'date_selector_crm_business_trip_d')]"))
                 .sendKeys(date1);
+        String dateActual1 = driver.findElement(By.xpath("//input[@placeholder='Укажите дату' and contains(@id,'date_selector_crm_business_trip_d')]"))
+                .getAttribute("value");
         driver.findElement(By.xpath("//input[@placeholder='Укажите дату' and contains(@id,'date_selector_crm_business_trip_r')]"))
                 .sendKeys(date2);
-
+        String dateActual2=driver.findElement(By.xpath("//input[@placeholder='Укажите дату' and contains(@id,'date_selector_crm_business_trip_r')]"))
+                .getAttribute("value");
         //проверяем поля
-        Assertions.assertEquals(city2, citiActual, "Значения различаются");
-        Assertions.assertEquals(city1, city.getAttribute("value"), "Значения различаются");
+        assertEquals(city2, citiActual, "Значения различаются");
+        assertEquals(city1, city.getAttribute("value"), "Значения различаются");
+        assertEquals(date1, dateActual1, "Значения различаются");
+        assertEquals(date2, dateActual2, "Значения различаются");
+        assertEquals(division,divisionActualText,"Значения различаются");
     }
 
     @AfterEach
