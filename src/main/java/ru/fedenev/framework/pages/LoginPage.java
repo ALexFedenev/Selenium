@@ -23,13 +23,14 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    @Step
     public LoginPage sendLoginPassword(String valueLogin, String valuePass) {
         waitUtilElementToBeClickable(login).sendKeys(valueLogin);
         waitUtilElementToBeClickable(pass).sendKeys(valuePass);
         return this;
     }
 
-
+    @Step
     public StartPage clickButton() {
         waitUtilElementToBeClickable(button).click();
         return pageManager.getStartPage();

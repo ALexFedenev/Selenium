@@ -1,5 +1,6 @@
 package ru.fedenev.framework.pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,12 +38,13 @@ public class CreateTripPage extends BasePage {
     @FindBy(xpath = "//span[text()='Внештатные сотрудники']/../..//span[contains(text(),'Список командируемых сотрудников не может быть пустым')]")
     private WebElement elementError;
 
-
+    @Step
     public CreateTripPage waitUtilElement() {
         waitUtilElementToBeVisible(title);
         return this;
     }
 
+    @Step
     public CreateTripPage checkOpenTripPage() {
         waitUtilElementToBeVisible(title);
         Assert.assertEquals("Заголовок отсутствует/не соответствует требуемому",
@@ -50,16 +52,19 @@ public class CreateTripPage extends BasePage {
         return this;
     }
 
+    @Step
     public CreateTripPage clickDivisionField() {
         waitUtilElementToBeClickable(divisionField).click();
         return this;
     }
 
+    @Step
     public CreateTripPage clickOpenRow() {
         waitUtilElementToBeClickable(openRows).click();
         return this;
     }
 
+    @Step
     public CreateTripPage clickOpenOrgAndSelectOrgCheckBox() {
         waitUtilElementToBeClickable(selectOrg).click();
         waitUtilElementToBeClickable(selectOrganization).click();
@@ -68,6 +73,7 @@ public class CreateTripPage extends BasePage {
         return this;
     }
 
+    @Step
     public CreateTripPage sendField(String nameField, String value) {
         switch (nameField) {
             case "Город выбытия":
@@ -88,14 +94,16 @@ public class CreateTripPage extends BasePage {
         return this;
     }
 
+    @Step
     public CreateTripPage clickButtonSave() {
         waitUtilElementToBeClickable(buttonSave).click();
         return this;
     }
 
+    @Step
     public CreateTripPage checkErrorMessageAtField() {
         waitUtilElementToBeVisible(elementError);
-        assertEquals("Проверка ошибки не пройдена", "Список командируемых сотрудников не может быть пустым", elementError.getText());
+        assertEquals("Проверка ошибки не пройдена", "Список командируемых сотрудников не может быть пусты", elementError.getText());
         return this;
     }
 }

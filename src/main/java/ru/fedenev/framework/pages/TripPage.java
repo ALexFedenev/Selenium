@@ -1,5 +1,6 @@
 package ru.fedenev.framework.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -12,11 +13,13 @@ public class TripPage extends BasePage {
     @FindBy(xpath = "//div[@class='loader-mask shown']/div/following::div/div")
     private WebElement loadingIcon;
 
+    @Step
     public TripPage waitUtilElement() {
         waitUtilElementToBeVisible(titleTrip);
         return this;
     }
 
+    @Step
     public CreateTripPage clickButton() {
         waitUtilElementToBeClickable(buttonCreateTrip).click();
         return pageManager.getCreateTripPage();
