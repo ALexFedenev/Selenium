@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static org.junit.Assert.assertEquals;
+
 public class CreateTripPage extends BasePage {
 
     @FindBy(xpath = "//h1[@class='user-name']")
@@ -30,6 +32,11 @@ public class CreateTripPage extends BasePage {
     @FindBy(xpath = "//input[@placeholder='Укажите дату' and contains(@id,'date_selector_crm_business_trip_r')]")
     private WebElement fieldDateOut;
 
+    @FindBy(xpath = "//button[contains(text(),'Сохранить и закрыть')]")
+    private WebElement buttonSave;
+    @FindBy(xpath = "//span[text()='Внештатные сотрудники']/../..//span[contains(text(),'Список командируемых сотрудников не может быть пустым')]")
+    private WebElement elementError;
+
 
     public CreateTripPage waitUtilElement() {
         waitUtilElementToBeVisible(title);
@@ -53,10 +60,43 @@ public class CreateTripPage extends BasePage {
         return this;
     }
 
-    public CreateTripPage clickOpenOrgAndSelect() {
+    public CreateTripPage clickOpenOrgAndSelectOrgCheckBox() {
         waitUtilElementToBeClickable(selectOrg).click();
         waitUtilElementToBeClickable(selectOrganization).click();
+        assertEquals("Поле было заполнено некорректно","(Опера)Призрачная Организация Охотников", selectOrg.getText());
+        waitUtilElementToBeClickable(checkBox).click();
         return this;
     }
 
+    public CreateTripPage sendField(String nameField, String value) {
+        switch (nameField) {
+            case "Город выбытия":
+                fillInputField(fieldCity1, value);
+                break;
+            case "Город прибытия":
+                fillInputField(fieldCity2, value);
+                break;
+            case "Дата выезда":
+                fillInputField(fieldDateIn, value);
+                break;
+            case "Дата въезда":
+                fillInputField(fieldDateOut, value);
+                break;
+            default:
+                Assert.fail("Поле с наименованием '" + nameField + "' отсутствует на странице ");
+        }
+        return this;
+    }
+
+    public CreateTripPage clickButtonSave() {
+        waitUtilElementToBeClickable(buttonSave).click();
+        return this;
+    }
+
+    public CreateTripPage checkErrorMessageAtField() {
+        waitUtilElementToBeVisible(elementError);
+        assertEquals("Проверка ошибки не пройдена", "Список командируемых сотрудников не может быть пустым", elementError.getText());
+        return this;
+    }
 }
+

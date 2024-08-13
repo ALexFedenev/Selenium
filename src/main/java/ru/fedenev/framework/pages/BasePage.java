@@ -1,11 +1,15 @@
 package ru.fedenev.framework.pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.fedenev.framework.managers.DriverManager;
 import ru.fedenev.framework.managers.PageManager;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class BasePage {
 
@@ -26,8 +30,16 @@ public class BasePage {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    protected WebElement waitUtilElementToBeVisible(WebElement element) {
-        return wait.until(ExpectedConditions.visibilityOf(element));
+    protected void waitUtilElementToBeVisible(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+    protected void fillInputField(WebElement element, String value) {
+        element.click();
+        element.clear();
+        element.sendKeys(value);
+        boolean checkFlag = wait.until(ExpectedConditions.attributeContains(element, "value", value));
+        assertTrue("Поле было заполнено некорректно",checkFlag);
+        element.sendKeys(Keys.ESCAPE);
     }
 
 }
