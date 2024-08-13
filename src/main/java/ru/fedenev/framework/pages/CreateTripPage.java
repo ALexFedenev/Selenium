@@ -63,7 +63,7 @@ public class CreateTripPage extends BasePage {
     public CreateTripPage clickOpenOrgAndSelectOrgCheckBox() {
         waitUtilElementToBeClickable(selectOrg).click();
         waitUtilElementToBeClickable(selectOrganization).click();
-        assertEquals("Поле было заполнено некорректно","(Опера)Призрачная Организация Охотников", selectOrg.getText());
+        assertEquals("Поле было заполнено некорректно", "(Опера)Призрачная Организация Охотников", selectOrg.getText());
         waitUtilElementToBeClickable(checkBox).click();
         return this;
     }

@@ -23,7 +23,7 @@ public class CreateTripTest extends BaseTests {
                 .clickButton().waitUtilElement()
                 .selectBaseMenu("Расходы")
                 .selectSubMenu("Командировки")
-                .waitUtilElemen()
+                .waitUtilElement()
                 .clickButton().waitUtilElement()
                 .checkOpenTripPage()
                 .clickDivisionField().clickOpenRow().clickOpenOrgAndSelectOrgCheckBox()

@@ -6,8 +6,6 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
-
 public class StartPage extends BasePage {
 
     @FindBy(xpath = "//h1[@class='oro-subtitle']")

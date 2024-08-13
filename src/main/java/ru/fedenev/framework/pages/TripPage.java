@@ -3,8 +3,6 @@ package ru.fedenev.framework.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
-
 public class TripPage extends BasePage {
     @FindBy(xpath = "//li[text()='Командировки']")
     private WebElement titleTrip;
@@ -14,7 +12,7 @@ public class TripPage extends BasePage {
     @FindBy(xpath = "//div[@class='loader-mask shown']/div/following::div/div")
     private WebElement loadingIcon;
 
-    public TripPage waitUtilElemen() {
+    public TripPage waitUtilElement() {
         waitUtilElementToBeVisible(titleTrip);
         return this;
     }
