@@ -1,5 +1,6 @@
 package ru.fedenev.framework.pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,12 +15,12 @@ public class StartPage extends BasePage {
     @FindBy(xpath = "//li/a/span[@class='title']")
     private List<WebElement> listBaseMenu;
 
-
+@Step
     public StartPage waitUtilElement() {
         waitUtilElementToBeVisible(waitOpenPage);
         return this;
     }
-
+@Step
     public StartPage selectBaseMenu(String nameBaseMenu) {
         for (WebElement menuItem : listBaseMenu) {
             if (menuItem.getText().trim().equalsIgnoreCase(nameBaseMenu)) {

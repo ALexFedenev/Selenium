@@ -1,8 +1,9 @@
 package ru.fedenev.tests;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import ru.fedenev.framework.managers.DriverManager;
 import ru.fedenev.framework.managers.InitManager;
 import ru.fedenev.framework.managers.PageManager;
@@ -16,19 +17,19 @@ public class BaseTests {
 
     private final DriverManager driverManager = DriverManager.getDriverManager();
 
-    @BeforeAll
+    @BeforeClass
     public static void beforeAll() {
         InitManager.initFramework();
     }
 
-    @BeforeEach
+    @Before
     public void beforeEach() {
         driverManager.getDriver().get(TestPropManager.getTestPropManager().getProperty(BASE_URL));
     }
 
-    @AfterAll
+    @AfterClass
     public static void afterAll() {
-        //InitManager.quitFramework();
+        InitManager.quitFramework();
     }
 
 }

@@ -1,13 +1,15 @@
 package ru.fedenev.tests;
 
-import org.junit.jupiter.api.Test;
+
+import io.qameta.allure.junit4.DisplayName;
 import ru.fedenev.framework.managers.TestPropManager;
+import org.junit.Test;
 
 import static ru.fedenev.framework.utils.PropConstant.PropConst.*;
 
 
 public class CreateTripTest extends BaseTests {
-
+@DisplayName("Создание командировки")
     @Test
     public void test() {
         //тестовые данные
