@@ -38,13 +38,13 @@ public class CreateTripPage extends BasePage {
     @FindBy(xpath = "//span[text()='Внештатные сотрудники']/../..//span[contains(text(),'Список командируемых сотрудников не может быть пустым')]")
     private WebElement elementError;
 
-    @Step
+
     public CreateTripPage waitUtilElement() {
         waitUtilElementToBeVisible(title);
         return this;
     }
 
-    @Step
+
     public CreateTripPage checkOpenTripPage() {
         waitUtilElementToBeVisible(title);
         Assert.assertEquals("Заголовок отсутствует/не соответствует требуемому",
@@ -52,19 +52,19 @@ public class CreateTripPage extends BasePage {
         return this;
     }
 
-    @Step
+
     public CreateTripPage clickDivisionField() {
         waitUtilElementToBeClickable(divisionField).click();
         return this;
     }
 
-    @Step
+
     public CreateTripPage clickOpenRow() {
         waitUtilElementToBeClickable(openRows).click();
         return this;
     }
 
-    @Step
+
     public CreateTripPage clickOpenOrgAndSelectOrgCheckBox() {
         waitUtilElementToBeClickable(selectOrg).click();
         waitUtilElementToBeClickable(selectOrganization).click();
@@ -73,7 +73,7 @@ public class CreateTripPage extends BasePage {
         return this;
     }
 
-    @Step
+
     public CreateTripPage sendField(String nameField, String value) {
         switch (nameField) {
             case "Город выбытия":
@@ -94,16 +94,15 @@ public class CreateTripPage extends BasePage {
         return this;
     }
 
-    @Step
+
     public CreateTripPage clickButtonSave() {
         waitUtilElementToBeClickable(buttonSave).click();
         return this;
     }
 
-    @Step
-    public CreateTripPage checkErrorMessageAtField() {
+    public CreateTripPage checkErrorMessageAtField(String massege) {
         waitUtilElementToBeVisible(elementError);
-        assertEquals("Проверка ошибки не пройдена", "Список командируемых сотрудников не может быть пусты", elementError.getText());
+        assertEquals("Проверка ошибки не пройдена", massege, elementError.getText());
         return this;
     }
 }

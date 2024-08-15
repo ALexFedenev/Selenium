@@ -2,8 +2,7 @@ package ru.fedenev.framework.managers;
 
 import java.util.concurrent.TimeUnit;
 
-import static ru.fedenev.framework.utils.PropConstant.PropConst.IMPLICITLY_WAIT;
-import static ru.fedenev.framework.utils.PropConstant.PropConst.PAGE_LOAD_TIMEOUT;
+import static ru.fedenev.framework.utils.PropConstant.PropConst.*;
 
 public class InitManager {
 
@@ -15,6 +14,7 @@ public class InitManager {
         driverManager.getDriver().manage().window().maximize();
         driverManager.getDriver().manage().timeouts().implicitlyWait(Integer.parseInt(props.getProperty(IMPLICITLY_WAIT)), TimeUnit.SECONDS);
         driverManager.getDriver().manage().timeouts().pageLoadTimeout(Integer.parseInt(props.getProperty(PAGE_LOAD_TIMEOUT)), TimeUnit.SECONDS);
+        driverManager.getDriver().get(TestPropManager.getTestPropManager().getProperty(BASE_URL));
     }
 
     public static void quitFramework() {

@@ -13,13 +13,13 @@ public class TripPage extends BasePage {
     @FindBy(xpath = "//div[@class='loader-mask shown']/div/following::div/div")
     private WebElement loadingIcon;
 
-    @Step
+
     public TripPage waitUtilElement() {
         waitUtilElementToBeVisible(titleTrip);
         return this;
     }
 
-    @Step
+
     public CreateTripPage clickButton() {
         waitUtilElementToBeClickable(buttonCreateTrip).click();
         return pageManager.getCreateTripPage();
