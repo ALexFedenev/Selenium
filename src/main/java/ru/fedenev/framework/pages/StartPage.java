@@ -9,21 +9,24 @@ import java.util.List;
 
 public class StartPage extends BasePage {
 
-    @FindBy(xpath = "//h1[@class='oro-subtitle']")
-    private WebElement waitOpenPage;
+    @FindBy(xpath = "//button/span[text()='Каталог']")
+    private WebElement buttonCatalog;
 
-    @FindBy(xpath = "//li/a/span[@class='title']")
-    private List<WebElement> listBaseMenu;
+    @FindBy(xpath = "//li/a/div")
+    private List<WebElement> listMenuCatalog;
+
+    @FindBy(xpath = "//a/span[@itemprop='name']")
+    private List<WebElement> listSabMenuCatalog;
 
 
-    public StartPage waitUtilElement() {
-        waitUtilElementToBeVisible(waitOpenPage);
+    public StartPage clickCatalog() {
+        waitUtilElementToBeClickable(buttonCatalog).click();
         return this;
     }
 
 
     public StartPage selectBaseMenu(String nameBaseMenu) {
-        for (WebElement menuItem : listBaseMenu) {
+        for (WebElement menuItem : listMenuCatalog) {
             if (menuItem.getText().trim().equalsIgnoreCase(nameBaseMenu)) {
                 waitUtilElementToBeClickable(menuItem).click();
                 return this;
@@ -36,7 +39,7 @@ public class StartPage extends BasePage {
 
 
     public TripPage selectSubMenu(String nameSubMenu) {
-        for (WebElement menuItem : listBaseMenu) {
+        for (WebElement menuItem : listSabMenuCatalog) {
             if (menuItem.getText().equalsIgnoreCase(nameSubMenu)) {
                 waitUtilElementToBeClickable(menuItem).click();
                 return pageManager.getTripPage();

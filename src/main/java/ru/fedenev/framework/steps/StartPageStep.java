@@ -9,12 +9,13 @@ public class StartPageStep {
 
     private final PageManager pageManager = PageManager.getPageManager();
 
-    @И("^Проверяем что окно открылось$")
-    public void waitUtilElement() {
-        pageManager.getStartPage().waitUtilElement();
+    @И("^Проверяем что окно открылось и жмем 'Каталог'$")
+    public void clickCatalog() {
+        pageManager.getStartPage().clickCatalog();
     }
+
     @И("^Выбираем вкладку \"(.+)\"$")
-    public void selectBaseMenu(String nameBaseMenu){
+    public void selectBaseMenu(String nameBaseMenu) {
         pageManager.getStartPage().selectBaseMenu(nameBaseMenu);
     }
 
