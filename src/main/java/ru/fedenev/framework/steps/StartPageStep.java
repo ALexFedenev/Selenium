@@ -2,12 +2,10 @@ package ru.fedenev.framework.steps;
 
 import io.cucumber.java.ru.И;
 import ru.fedenev.framework.managers.PageManager;
-import ru.fedenev.framework.pages.StartPage;
-import ru.fedenev.framework.pages.TripPage;
 
 public class StartPageStep {
-
     private final PageManager pageManager = PageManager.getPageManager();
+
 
     @И("^Проверяем что окно открылось и жмем 'Каталог'$")
     public void clickCatalog() {
@@ -15,8 +13,8 @@ public class StartPageStep {
     }
 
     @И("^Выбираем вкладку \"(.+)\"$")
-    public void selectBaseMenu(String nameBaseMenu) {
-        pageManager.getStartPage().selectBaseMenu(nameBaseMenu);
+    public void moveElement(String nameElement) {
+        pageManager.getStartPage().moveElement(nameElement);
     }
 
 

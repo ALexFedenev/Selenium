@@ -8,7 +8,7 @@ import static ru.fedenev.framework.utils.PropConstant.PropConst.*;
 
 public class DriverManager {
 
-    private WebDriver driver;
+    protected WebDriver driver;
 
     private static DriverManager INSTANCE = null;
 
@@ -44,21 +44,12 @@ public class DriverManager {
     }
 
     private void initDriverWindowsOsFamily() {
-        initDriverAnyOsFamily(PATH_GECKO_DRIVER_WINDOWS, PATH_CHROME_DRIVER_WINDOWS);
+        initDriverAnyOsFamily(PATH_CHROME_DRIVER_WINDOWS);
     }
 
-    private void initDriverAnyOsFamily(String gecko, String chrome) {
-        switch (props.getProperty(TYPE_BROWSER)) {
-            case "firefox":
-                System.setProperty("webdriver.gecko.driver", props.getProperty(gecko));
-                driver = new FirefoxDriver();
-                break;
-            case "chrome":
-                System.setProperty("webdriver.chrome.driver", props.getProperty(chrome));
-                driver = new ChromeDriver();
-                break;
-        }
+    private void initDriverAnyOsFamily(String chrome) {
+        System.setProperty("webdriver.chrome.driver", props.getProperty(chrome));
+        driver = new ChromeDriver();
     }
-
 
 }

@@ -1,6 +1,5 @@
 package ru.fedenev.framework.pages;
 
-import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,30 +23,27 @@ public class StartPage extends BasePage {
         return this;
     }
 
+    public StartPage moveElement(String name) {
+        for (WebElement menuIte : listMenuCatalog) {
+            if (menuIte.getText().trim().equalsIgnoreCase(name)) {
+                action.moveToElement(menuIte).perform();
+                return this;
+            }
+        }
+        Assert.fail("Меню '" + name + "' не было найдено на стартовой странице!");
+        return this;
+    }
 
-    public StartPage selectBaseMenu(String nameBaseMenu) {
-        for (WebElement menuItem : listMenuCatalog) {
-            if (menuItem.getText().trim().equalsIgnoreCase(nameBaseMenu)) {
+
+    public StartPage selectSubMenu(String nameSubMenu) {
+        for (WebElement menuItem : listSabMenuCatalog) {
+            if (menuItem.getText().equalsIgnoreCase(nameSubMenu)) {
                 waitUtilElementToBeClickable(menuItem).click();
                 return this;
             }
         }
-        Assert.fail("Меню '" + nameBaseMenu + "' не было найдено на стартовой странице!");
-        return this;
-
-    }
-
-
-    public TripPage selectSubMenu(String nameSubMenu) {
-        for (WebElement menuItem : listSabMenuCatalog) {
-            if (menuItem.getText().equalsIgnoreCase(nameSubMenu)) {
-                waitUtilElementToBeClickable(menuItem).click();
-                return pageManager.getTripPage();
-            }
-        }
         Assert.fail("Меню '" + nameSubMenu + "' не было найдено на стартовой странице!");
-        return pageManager.getTripPage();
+        return this;
     }
-
 
 }

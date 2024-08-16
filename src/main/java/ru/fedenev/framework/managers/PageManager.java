@@ -1,18 +1,13 @@
 package ru.fedenev.framework.managers;
 
-import ru.fedenev.framework.pages.CreateTripPage;
-import ru.fedenev.framework.pages.LoginPage;
+import ru.fedenev.framework.pages.FindPage;
 import ru.fedenev.framework.pages.StartPage;
-import ru.fedenev.framework.pages.TripPage;
 
 public class PageManager {
 
     private static PageManager pageManager;
-    private LoginPage loginPage;
+    private FindPage findPage;
     private StartPage startPage;
-
-    private TripPage tripPage;
-    private CreateTripPage createTripPage;
 
 
     private PageManager() {
@@ -25,11 +20,11 @@ public class PageManager {
         return pageManager;
     }
 
-    public LoginPage getLoginPage() {
-        if (loginPage == null) {
-            loginPage = new LoginPage();
+    public FindPage getFindPage() {
+        if (findPage == null) {
+            findPage = new FindPage();
         }
-        return loginPage;
+        return findPage;
 
     }
 
@@ -39,19 +34,6 @@ public class PageManager {
             startPage = new StartPage();
         }
         return startPage;
-    }
-    public TripPage getTripPage() {
-        if (tripPage == null) {
-            tripPage = new TripPage();
-        }
-        return tripPage;
-    }
-
-    public CreateTripPage getCreateTripPage() {
-        if (createTripPage == null) {
-            createTripPage = new CreateTripPage();
-        }
-        return createTripPage;
     }
 
 }
