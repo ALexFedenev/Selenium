@@ -2,13 +2,14 @@ package ru.fedenev.framework.managers;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-import static ru.fedenev.framework.utils.PropConstant.PropConst.*;
+import java.time.Duration;
+
+import static ru.fedenev.framework.utils.PropConstant.PropConst.PATH_CHROME_DRIVER_WINDOWS;
 
 public class DriverManager {
 
-    protected WebDriver driver;
+    private WebDriver driver;
 
     private static DriverManager INSTANCE = null;
 

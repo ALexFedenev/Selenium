@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = {"src/test/resources"},
         glue = {"ru/fedenev/framework/steps"},
-        tags = "@1",
+        tags = "@regress",
         plugin = {"io.qameta.allure.cucumber5jvm.AllureCucumber5Jvm"}
 )
 public class RunnerTest {
