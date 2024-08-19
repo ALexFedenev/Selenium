@@ -11,8 +11,10 @@ public class Hooks {
         InitManager.initFramework();
     }
 
-    @After("~@regress")
+    @After
     public void after() {
+
         InitManager.quitFramework();
+
     }
 }

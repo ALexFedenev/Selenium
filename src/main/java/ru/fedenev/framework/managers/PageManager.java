@@ -36,4 +36,11 @@ public class PageManager {
         return startPage;
     }
 
+    public void quitPageManager() {
+        if (pageManager != null) {
+            pageManager = null;
+        }
+    }
+
+
 }

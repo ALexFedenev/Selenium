@@ -28,8 +28,8 @@ public class FindPage extends BasePage {
     private WebElement onePlu;
     @FindBy(xpath = "//input[@aria-label='Поиск']")
     private WebElement fieldFind;
-    @FindBy(xpath = "//div[@class='page_title h1 ListingLayout_titleWrapper__cx52q']")
-    private WebElement elementWait;//элемент пропадает при обновлении блока поиска
+    @FindBy(xpath = "//div[@class= 'page_title h1 ListingLayout_titleWrapper__cx52q ListingLayout_titleLoading__j8LMk']")
+    private WebElement elementWait;
     @FindBy(xpath = "//span[@class='ListingPageTitle_count__lIz5h ListingLayout_count__mj4WV']")
     private WebElement QuantityPluOnPage;
     @FindBy(xpath = "//a/div[@title]")
@@ -46,7 +46,7 @@ public class FindPage extends BasePage {
         for (WebElement menuItem : listCheckBox) {
             if (menuItem.getText().trim().equalsIgnoreCase(nameCheckBox)) {
                 waitUtilElementToBeClickable(menuItem).click();
-                waitUtilElementToBeVisible(elementWait);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class= 'page_title h1 ListingLayout_titleWrapper__cx52q ListingLayout_titleLoading__j8LMk']")));
                 return this;
             }
         }
@@ -63,7 +63,6 @@ public class FindPage extends BasePage {
 
 
     public FindPage selectOnePluOnPage() {
-        waitUtilElementToBeVisible(elementWait);
         waitUtilElementToBeVisible(onePlu);
         namePlu = onePlu.getText();
         return this;
